@@ -1,0 +1,20 @@
+# Node & Dependencies
+node_modules/
+
+# Environment files (CRITICAL: Do not upload secrets to GitHub)
+.env
+.env.*
+*.env
+.env.local
+.env.production
+.env.development
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Editor & OS
+.DS_Store
+.vscode/
+.idea/

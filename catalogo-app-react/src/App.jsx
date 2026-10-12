@@ -246,7 +246,7 @@ function CatalogApp() {
                   </div>
                   <h3>No pudimos cargar los productos</h3>
                   <p>{fetchError}</p>
-                  <p className="state-hint">Asegúrate de que la API en el backend esté ejecutándose en el puerto 4000.</p>
+                  <p className="state-hint">Verifica que la API esté desplegada correctamente y que las variables de entorno estén configuradas en Vercel (MONGODB_URI, JWT_SECRET).</p>
                   <button className="btn btn-primary btn-glow" onClick={loadProducts}>
                     <IconRefresh size={18} />
                     <span>Reintentar Conexión</span>

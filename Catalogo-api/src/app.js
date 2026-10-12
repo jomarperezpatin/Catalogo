@@ -10,11 +10,31 @@ dotenv.config();
 
 const app = express();
 
+const corsOptions = {
+    origin: (origin, callback) => {
+        // Allow requests with no origin (mobile apps, curl, Postman)
+        if (!origin) return callback(null, true);
+        // In production, allow same-domain (Vercel) and CORS_ORIGIN env var
+        const allowed = process.env.CORS_ORIGIN
+            ? process.env.CORS_ORIGIN.split(',').map(o => o.trim())
+            : [];
+        // Always allow *.vercel.app and localhost in dev
+        const isVercel = origin.endsWith('.vercel.app');
+        const isLocal = origin.startsWith('http://localhost') || origin.startsWith('http://127.0.0.1');
+        if (isVercel || isLocal || allowed.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(null, true); // permissive – lock down once you know your domain
+        }
+    },
+    credentials: true,
+};
+
 // Conectar a la base de datos
 connectDB();
 
 // Middlewares
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

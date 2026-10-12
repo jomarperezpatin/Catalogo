@@ -44,6 +44,32 @@ export const ProductCard = ({
           loading="lazy"
         />
 
+        {/* Admin floating quick controls */}
+        {isAdmin && (
+          <div className="card-admin-floating">
+            <button
+              className="btn-icon-floating btn-edit"
+              onClick={(e) => {
+                e.stopPropagation();
+                onEdit(product);
+              }}
+              title="Editar producto"
+            >
+              <IconEdit size={16} />
+            </button>
+            <button
+              className="btn-icon-floating btn-delete"
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete(product);
+              }}
+              title="Eliminar producto"
+            >
+              <IconTrash size={16} />
+            </button>
+          </div>
+        )}
+
         {/* Wishlist button */}
         <button
           className={`btn-icon-floating wishlist-btn ${isFavorited ? 'favorited' : ''}`}
@@ -111,36 +137,11 @@ export const ProductCard = ({
           </div>
 
           <div className="card-actions-row">
-            {/* Admin Controls */}
-            {isAdmin && (
-              <div className="admin-inline-actions">
-                <button
-                  className="btn-icon-round btn-edit"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onEdit(product);
-                  }}
-                  title="Editar producto"
-                >
-                  <IconEdit size={16} />
-                </button>
-                <button
-                  className="btn-icon-round btn-delete"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onDelete(product);
-                  }}
-                  title="Eliminar producto"
-                >
-                  <IconTrash size={16} />
-                </button>
-              </div>
-            )}
-
             {/* Add to Cart button */}
             <button
               className="btn btn-primary btn-sm btn-add-cart"
               onClick={() => addToCart(product, 1)}
+              title="Agregar al carrito"
             >
               <IconCart size={16} />
               <span>Agregar</span>

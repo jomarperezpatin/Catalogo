@@ -44,7 +44,7 @@ export const AdminDashboard = ({
 
   const handleTestWhatsApp = () => {
     const testUrl = getWhatsAppUrl('¡Hola! Este es un mensaje de prueba desde el Panel de Administración.');
-    window.location.href = testUrl;
+    window.open(testUrl, '_blank', 'noopener,noreferrer');
   };
 
   const filtered = products.filter((p) => {

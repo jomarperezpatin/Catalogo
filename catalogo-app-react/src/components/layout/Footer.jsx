@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconSparkles, IconWhatsApp, IconShield } from '../common/Icons';
+import { IconPhoenixBag, IconWhatsApp, IconShield } from '../common/Icons';
 import { useAuth } from '../../context/AuthContext';
 import { useSettings } from '../../context/SettingsContext';
 
@@ -13,10 +13,10 @@ export const Footer = () => {
         <div className="footer-grid">
           <div className="footer-brand-col">
             <div className="footer-logo">
-              <div className="brand-logo-badge">
-                <IconSparkles size={18} />
+              <div className="brand-logo-badge brand-logo-fenix">
+                <IconPhoenixBag size={24} />
               </div>
-              <span className="brand-title">NEX<span className="brand-highlight">CATALOG</span></span>
+              <span className="brand-title">FENIX<span className="brand-highlight">CATALOG</span></span>
             </div>
             <p className="footer-tagline">
               La plataforma de catálogo digital diseñada para conectar clientes con los mejores productos disponibles de manera rápida, confiable y moderna.
@@ -75,9 +75,9 @@ export const Footer = () => {
         </div>
 
         <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} NexCatalog. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} NovaLink. Todos los derechos reservados.</p>
           <div className="footer-bottom-right">
-            <p className="footer-built">Desarrollado con React 19 & Express REST API</p>
+            <p className="footer-built">Desarrollado con React 19 & Express REST API.</p>
           </div>
         </div>
       </div>

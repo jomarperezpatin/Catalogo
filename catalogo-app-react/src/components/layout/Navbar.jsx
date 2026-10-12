@@ -8,6 +8,7 @@ import {
   IconPlus,
   IconSparkles,
   IconPackage,
+  IconPhoenixBag,
 } from '../common/Icons';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
@@ -26,11 +27,11 @@ export const Navbar = ({
       <div className="navbar-inner">
         {/* Brand Logo */}
         <div className="navbar-brand" onClick={() => { setActiveTab('catalog'); setIsWishlistOnly(false); }}>
-          <div className="brand-logo-badge">
-            <IconSparkles size={22} className="text-primary-glow" />
+          <div className="brand-logo-badge brand-logo-fenix">
+            <IconPhoenixBag size={28} />
           </div>
           <div className="brand-text-wrapper">
-            <span className="brand-title">NEX<span className="brand-highlight">CATALOG</span></span>
+            <span className="brand-title">FENIX<span className="brand-highlight">CATALOG</span></span>
             <span className="brand-subtitle">Catálogo Digital Exclusivo</span>
           </div>
         </div>

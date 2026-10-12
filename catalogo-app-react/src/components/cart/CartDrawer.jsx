@@ -29,6 +29,7 @@ export const CartDrawer = () => {
   const { getWhatsAppUrl, whatsappNumber } = useSettings();
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
+  const [customerEmail, setCustomerEmail] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('Transferencia bancaria');
   const [customerNotes, setCustomerNotes] = useState('');
   const [isCheckoutStep, setIsCheckoutStep] = useState(false);
@@ -41,6 +42,7 @@ export const CartDrawer = () => {
     // Build a COMPACT message — WhatsApp URLs break (black screen) with long messages
     const name = customerName.trim() || 'No especificado';
     const phone = customerPhone.trim();
+    const email = customerEmail.trim();
 
     // Short product lines: "2x Producto - $100.00"
     const productLines = cart.map((item) => {
@@ -52,6 +54,7 @@ export const CartDrawer = () => {
     let msg = `*NUEVO PEDIDO*\n`;
     msg += `Nombre: ${name}\n`;
     if (phone) msg += `Tel: ${phone}\n`;
+    if (email) msg += `Email: ${email}\n`;
     msg += `Pago: ${paymentMethod}\n`;
     if (customerNotes.trim()) msg += `Notas: ${customerNotes.trim()}\n`;
     msg += `\n`;
@@ -62,6 +65,7 @@ export const CartDrawer = () => {
     let fullMessage = `🛒 *PEDIDO COMPLETO*\n\n`;
     fullMessage += `📋 *Cliente:* ${name}\n`;
     if (phone) fullMessage += `📱 *Tel:* ${phone}\n`;
+    if (email) fullMessage += `✉️ *Email:* ${email}\n`;
     fullMessage += `💳 *Pago:* ${paymentMethod}\n`;
     if (customerNotes.trim()) fullMessage += `📝 *Notas:* ${customerNotes.trim()}\n`;
     fullMessage += `\n📦 *Productos:*\n`;
@@ -93,8 +97,8 @@ export const CartDrawer = () => {
       url = `https://wa.me/?text=${encoded}`;
     }
 
-    // Use location.href — window.open causes black screen in many browsers
-    window.location.href = url;
+    // Open WhatsApp in a new tab
+    window.open(url, '_blank', 'noopener,noreferrer');
 
     if (!whatsappNumber) {
       success('Abriendo WhatsApp... (Configura tu número en el Panel Admin)', 'Pedido preparado');
@@ -181,6 +185,17 @@ export const CartDrawer = () => {
               </div>
 
               <div className="form-group">
+                <label>Correo Electrónico (Opcional)</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Ej. cliente@ejemplo.com"
+                  value={customerEmail}
+                  onChange={(e) => setCustomerEmail(e.target.value)}
+                />
+              </div>
+
+              <div className="form-group">
                 <label>Forma de Pago</label>
                 <div className="payment-options-grid">
                   <label className={`payment-option-card ${paymentMethod === 'Transferencia bancaria' ? 'active' : ''}`}>
@@ -197,17 +212,21 @@ export const CartDrawer = () => {
                     </div>
                   </label>
 
-                  <label className={`payment-option-card ${paymentMethod === 'Pago con tarjeta de crédito' ? 'active' : ''}`}>
+                  <label className="payment-option-card disabled" title="Próximamente disponible">
                     <input
                       type="radio"
                       name="paymentMethod"
                       value="Pago con tarjeta de crédito"
-                      checked={paymentMethod === 'Pago con tarjeta de crédito'}
-                      onChange={(e) => setPaymentMethod(e.target.value)}
+                      disabled
+                      checked={false}
+                      onChange={() => {}}
                     />
                     <div className="payment-option-text">
-                      <strong>💳 Pago con tarjeta de crédito</strong>
-                      <span>Enlace seguro de cobro con tarjeta</span>
+                      <div className="payment-option-title-row">
+                        <strong>💳 Pago con tarjeta de crédito</strong>
+                        <span className="badge-coming-soon">Próximamente</span>
+                      </div>
+                      <span>Enlace seguro de cobro con tarjeta (Próximamente disponible)</span>
                     </div>
                   </label>
                 </div>

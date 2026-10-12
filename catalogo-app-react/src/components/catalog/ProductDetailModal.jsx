@@ -40,7 +40,7 @@ export const ProductDetailModal = ({ product, onClose }) => {
     text += `\n¿Tienen disponibilidad para entrega inmediata? ¡Gracias!`;
 
     const targetUrl = getWhatsAppUrl(text);
-    window.location.href = targetUrl;
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (

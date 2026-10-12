@@ -1,5 +1,5 @@
-// Base API URL configuration
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+// Base API URL configuration (supports Vercel service binding CATALOGO_API_URL, VITE_API_URL, or relative /api)
+const API_BASE_URL = import.meta.env.CATALOGO_API_URL || import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '/api' : 'http://localhost:4000/api');
 
 const getHeaders = (includeAuth = true) => {
   const headers = {

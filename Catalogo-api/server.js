@@ -9,3 +9,5 @@ app.listen(PORT, () => {
     console.log(`Servidor ejecutándose en puerto ${PORT}`);
     console.log(`URL: http://localhost:${PORT}`);
 });
+
+export default app;

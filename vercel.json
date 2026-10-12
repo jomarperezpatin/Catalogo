@@ -1,0 +1,35 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "catalogo-api": {
+      "root": "Catalogo-api",
+      "framework": "express"
+    },
+    "catalogo-app-react": {
+      "root": "catalogo-app-react",
+      "framework": "vite",
+      "bindings": [
+        {
+          "type": "service",
+          "service": "catalogo-api",
+          "format": "url",
+          "env": "CATALOGO_API_URL"
+        }
+      ]
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api",
+      "destination": { "service": "catalogo-api" }
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": { "service": "catalogo-api" }
+    },
+    {
+      "source": "/(.*)",
+      "destination": { "service": "catalogo-app-react" }
+    }
+  ]
+}

@@ -10,7 +10,9 @@ const connectDB = async () => {
         return;
     }
     try {
-        const connection = await mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/catalogo");
+        const connection = await mongoose.connect(
+            process.env.MONGODB_URI || "mongodb+srv://nomalinkse_db_user:m6Bwjo12I3oX30ug@cluster0.tdv2maj.mongodb.net/catalogo?appName=Cluster0"
+        );
         isConnected = true;
         console.log(`MongoDB connected: ${connection.connection.host}`);
     } catch (error) {

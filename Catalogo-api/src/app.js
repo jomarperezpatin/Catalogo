@@ -30,13 +30,25 @@ const corsOptions = {
     credentials: true,
 };
 
-// Conectar a la base de datos
-connectDB();
-
 // Middlewares
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Middleware de conexión a la base de datos (vital para Vercel Serverless)
+app.use(async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (error) {
+        console.error("Database connection middleware error:", error);
+        res.status(500).json({
+            success: false,
+            message: "Error de conexión con la base de datos",
+            error: error.message
+        });
+    }
+});
 
 // Rutas
 app.use('/api/products', productRoutes);
